@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Language</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: url('https://i.imgur.com/8Km9tLL.jpg') no-repeat center/cover;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: rgba(30,50,70,0.9);
+    color: white;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+/* MAIN BOX */
+.container {
+    width: 80%;
+    margin: 80px auto;
+    padding: 40px;
+    background: rgba(120,50,30,0.9);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* CARD */
+.card {
+    width: 250px;
+    height: 300px;
+    background: #24384f;
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+/* HOVER EFFECT */
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px cyan, 0 0 40px blue;
+}
+
+/* TITLE */
+.card h2 {
+    background: #7a2d1c;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+/* IMAGE */
+.card img {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* CLICK BURST */
+.card span {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, white, transparent);
+    transform: scale(0);
+    animation: burst 0.5s ease-out;
+}
+
+@keyframes burst {
+    to {
+        transform: scale(6);
+        opacity: 0;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div>EDULIFT</div>
+    <div>HOME | ABOUT | MORE</div>
+</div>
+
+<div class="container">
+
+    <!-- FILIPINO -->
+    <div class="card" onclick="goLang('filipino.html')">
+        <h2>FILIPINO</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/197/197561.png">
+    </div>
+
+    <!-- ENGLISH -->
+    <div class="card" onclick="goLang('english.html')">
+        <h2>ENGLISH</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png">
+    </div>
+
+</div>
+
+<script>
+function goLang(page) {
+    window.location.href = page;
+}
+
+// burst effect
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', function(e){
+        const circle = document.createElement("span");
+        circle.style.width = "10px";
+        circle.style.height = "10px";
+        circle.style.left = e.offsetX + "px";
+        circle.style.top = e.offsetY + "px";
+
+        this.appendChild(circle);
+
+        setTimeout(() => {
+            circle.remove();
+        }, 500);
+    });
+});
+</script>
+
+</body>
+</html>
